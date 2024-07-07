@@ -28,6 +28,7 @@ def generate_message():
     return data
 
 def main():
+    time.sleep(6) # 6s delay for rabbitmq to start up properly
     connection = pika.BlockingConnection(pika.ConnectionParameters(RABBITMQ_HOST, port=RABBITMQ_PORT))
 
     channel = connection.channel()

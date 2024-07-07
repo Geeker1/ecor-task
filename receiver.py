@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 import pika 
 
 from logger import logger as log
@@ -14,6 +15,7 @@ def callback(channel, method, properties, body):
 
 
 def main():
+    time.sleep(6) # 6s delay for rabbitmq to start up properly before connecting
     connection = pika.BlockingConnection(pika.ConnectionParameters(RABBITMQ_HOST, port=RABBITMQ_PORT))
 
     channel = connection.channel()

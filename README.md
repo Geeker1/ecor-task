@@ -35,8 +35,10 @@ __NOTE: `QUEUE_NAME`, `RABBITMQ_HOST` and `RABBITMQ_PORT` should be same for pub
 
 Run `docker compose up publisher consumer` to start the publisher and consumer services.
 
-Monitor logs for each service to ensure messages are being sent and received using right queue according to `SLEEP_DURATION`.
+__NOTE__: There is an initial 6s delay on `publisher` and `consumer` services. This is to ensure `rabbitmq` service starts properly before we attempt connection.
 
+
+Monitor logs for each service to ensure messages are being sent and received using right queue according to `SLEEP_DURATION`.
 
 If you want to monitor changes in different terminals, you could run 
 

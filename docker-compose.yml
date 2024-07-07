@@ -1,0 +1,35 @@
+services:
+  rabbitmq:
+    image: rabbitmq:latest
+    ports:
+      - 5672:5672
+
+  publisher:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - rabbitmq
+    image: ecor:latest
+    command: >
+      /bin/sh -c 'python sender.py'
+    environment:
+      SLEEP_DURATION: 5
+      QUEUE_NAME: "ecor"
+      ROUTING_KEY: "ecor"
+      RABBITMQ_HOST: "rabbitmq"
+      RABBITMQ_PORT: 5672
+
+  consumer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - rabbitmq
+    image: ecor:latest
+    command: >
+      /bin/sh -c 'python receiver.py'
+    environment:
+      QUEUE_NAME: "ecor"
+      RABBITMQ_HOST: "rabbitmq"
+      RABBITMQ_PORT: 5672

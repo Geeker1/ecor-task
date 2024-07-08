@@ -15,9 +15,15 @@ Each component here represent a docker service as defined in docker-compose.yaml
 ### DOCKER
 To test application, ensure you have docker and docker compose installed on your system.
 
+https://docs.docker.com/engine/install/
+https://docs.docker.com/compose/install/
+
+Docker compose comes with docker so you might not need to install it seperately.
+
 Run `docker compose build` to build images for each service.
 
 Before you start services, there are environment variables to take note of which configure each service
+The defaults in docker-compose.yml file should be enough to test this project.
 
 #### PUBLISHER
 - *SLEEP_DURATION*: 10

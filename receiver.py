@@ -11,7 +11,7 @@ RABBITMQ_PORT = os.getenv("RABBITMQ_PORT")
 
 
 def callback(channel, method, properties, body):
-    log.info(body.decode("utf-8"))
+    log.info("CONSUMER: " + body.decode("utf-8"))
 
 
 def main():

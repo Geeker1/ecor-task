@@ -14,6 +14,8 @@ RABBITMQ_PORT = os.getenv("RABBITMQ_PORT")
 
 SLEEP_DURATION = int(os.getenv("SLEEP_DURATION"))
 
+EXCHANGE = os.getenv("RABBITMQ_EXCHANGE", "")
+
 
 def generate_message():
     # Returns a json object with keys `message_id` and `created_on`.
@@ -43,9 +45,9 @@ def main():
         dump_message = json.dumps(message)
 
         # Log message before return it
-        log.info(dump_message)
+        log.info("PUBLISHER: " + dump_message)
 
-        channel.basic_publish('', routing_key=ROUTING_KEY, body=dump_message)
+        channel.basic_publish(EXCHANGE, routing_key=ROUTING_KEY, body=dump_message)
 
 if __name__ == "__main__":
     main()

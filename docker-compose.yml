@@ -19,6 +19,7 @@ services:
       ROUTING_KEY: "ecor"
       RABBITMQ_HOST: "rabbitmq"
       RABBITMQ_PORT: 5672
+      EXCHANGE: "" # Not necessary for this project
 
   consumer:
     build:
